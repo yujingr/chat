@@ -1,4 +1,5 @@
-import { DeleteObjectCommand, DeleteObjectsCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
+import { DeleteObjectCommand, DeleteObjectsCommand, GetObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import type { MultiPartData } from 'h3'
 
 type StorageConfig = {
@@ -53,13 +54,6 @@ function getS3Client(config: StorageConfig): S3Client {
   return cachedClient
 }
 
-function encodePath(pathname: string): string {
-  return pathname
-    .split('/')
-    .map(segment => encodeURIComponent(segment))
-    .join('/')
-}
-
 function sanitizeFilename(filename: string): string {
   return filename
     .trim()
@@ -71,11 +65,16 @@ export function getChatStoragePrefix(ownerId: string, chatId: string): string {
   return `${ownerId}/${chatId}`
 }
 
-export function buildPublicObjectUrl(pathname: string): string {
-  const { endpoint, bucket } = getStorageConfig()
-  const endpointWithoutSlash = endpoint.replace(/\/+$/, '')
+export async function getSignedObjectUrl(pathname: string, expiresInSeconds = 60 * 60 * 24): Promise<string> {
+  const config = getStorageConfig()
+  const client = getS3Client(config)
 
-  return `${endpointWithoutSlash}/${bucket}/${encodePath(pathname)}`
+  return await getSignedUrl(client, new GetObjectCommand({
+    Bucket: config.bucket,
+    Key: pathname
+  }), {
+    expiresIn: expiresInSeconds
+  })
 }
 
 export async function uploadChatFile(ownerId: string, chatId: string, file: MultiPartData): Promise<{
@@ -101,7 +100,7 @@ export async function uploadChatFile(ownerId: string, chatId: string, file: Mult
 
   return {
     pathname,
-    url: buildPublicObjectUrl(pathname),
+    url: await getSignedObjectUrl(pathname),
     contentType,
     size
   }
