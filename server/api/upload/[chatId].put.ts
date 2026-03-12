@@ -1,16 +1,16 @@
-import { blob } from 'hub:blob'
 import { db, schema } from 'hub:db'
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
+import { uploadChatFile } from '../../utils/storage'
 
 export default defineEventHandler(async (event) => {
-  const { user } = await requireUserSession(event)
+  const session = await getUserSession(event)
 
   const { chatId } = await getValidatedRouterParams(event, z.object({
     chatId: z.string()
   }).parse)
 
-  const userId = user.id
+  const userId = session.user?.id || session.id
 
   const chat = await db.query.chats.findFirst({
     where: () => eq(schema.chats.id, chatId)
@@ -23,18 +23,39 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const username = user.username
+  const formData = await readMultipartFormData(event)
+  const file = formData?.find(part => part.name === 'files' && part.filename)
 
-  return blob.handleUpload(event, {
-    formKey: 'files',
-    multiple: false,
-    ensure: {
-      maxSize: FILE_UPLOAD_CONFIG.maxSize,
-      types: [...FILE_UPLOAD_CONFIG.types]
-    },
-    put: {
-      addRandomSuffix: true,
-      prefix: `${username}/${chatId}`
-    }
-  })
+  if (!file) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'No file found in upload request'
+    })
+  }
+
+  const allowedTypes = FILE_UPLOAD_CONFIG.types as readonly string[]
+  const isAllowedType = Boolean(
+    file.type
+    && (
+      file.type.startsWith('image/')
+      || allowedTypes.includes(file.type)
+    )
+  )
+
+  if (!isAllowedType) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Unsupported file type'
+    })
+  }
+
+  const maxUploadSize = 8 * 1024 * 1024
+  if (file.data.length > maxUploadSize) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: `File exceeds maximum size of ${FILE_UPLOAD_CONFIG.maxSize}`
+    })
+  }
+
+  return await uploadChatFile(userId, chatId, file)
 })

@@ -19,7 +19,7 @@ Full-featured AI Chatbot Nuxt application with authentication, chat history, mul
 
 - ⚡️ **Streaming AI messages** powered by the [AI SDK](https://ai-sdk.dev)
 - 🤖 **Multiple model support** via various AI providers with built-in AI Gateway support
-- 🔐 **Authentication** via [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils)
+- 👤 **Anonymous session support** via [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils) (no login required)
 - 💾 **Chat history persistence** using SQLite database (Turso in production) and [Drizzle ORM](https://orm.drizzle.team)
 - 🚀 **Easy deploy** to Vercel with zero configuration
 
@@ -28,10 +28,6 @@ Full-featured AI Chatbot Nuxt application with authentication, chat history, mul
 ```bash
 npm create nuxt@latest -- -t ui/chat
 ```
-
-## Deploy your own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=chat&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fchat&env=NUXT_SESSION_PASSWORD,NUXT_OAUTH_GITHUB_CLIENT_ID,NUXT_OAUTH_GITHUB_CLIENT_SECRET&products=%5B%7B%22type%22%3A%22integration%22%2C%22protocol%22%3A%22storage%22%2C%22productSlug%22%3A%22database%22%2C%22integrationSlug%22%3A%22tursocloud%22%7D%5D&demo-image=https%3A%2F%2Fui.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fchat-dark.png&demo-url=https%3A%2F%2Fchat-template.nuxt.dev%2F&demo-title=Nuxt%20Chat%20Template&demo-description=An%20AI%20chatbot%20template%20to%20build%20your%20own%20chatbot%20powered%20by%20Nuxt%20MDC%20and%20Vercel%20AI%20SDK.)
 
 ## Setup
 
@@ -61,48 +57,29 @@ AI_GATEWAY_API_KEY=<your-vercel-ai-gateway-api-key>
 > [!TIP]
 > With Vercel AI Gateway, you don't need individual API keys for OpenAI, Anthropic, etc. The AI Gateway provides a unified API to access hundreds of models through a single endpoint with automatic load balancing, fallbacks, and spend monitoring.
 
-### Authentication (Optional)
+### Session (Required)
 
-This template uses [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils) for authentication with GitHub OAuth.
-
-To enable authentication, [create a GitHub OAuth application](https://github.com/settings/applications/new) and set:
+This template keeps chat ownership scoped per visitor using [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils) session IDs. No OAuth login is required.
 
 ```bash
-NUXT_OAUTH_GITHUB_CLIENT_ID=<your-github-oauth-app-client-id>
-NUXT_OAUTH_GITHUB_CLIENT_SECRET=<your-github-oauth-app-client-secret>
 NUXT_SESSION_PASSWORD=<your-password-minimum-32-characters>
 ```
 
-### Blob Storage (Optional)
+### S3 Storage (Required for file uploads)
 
-This template uses [NuxtHub Blob](https://hub.nuxt.com/docs/features/blob) for file uploads, which supports multiple storage providers:
-
-- **Local filesystem** (default for development)
-- **Vercel Blob** (auto-configured when deployed to Vercel)
-- **Cloudflare R2** (auto-configured when deployed to Cloudflare)
-- **Amazon S3** (with manual configuration)
-
-For **[Vercel Blob](https://vercel.com/docs/storage/vercel-blob)**, assign a Blob Store to your project from the Vercel dashboard (Project → Storage), then set the token for local development:
+File uploads are stored in an S3-compatible bucket. Set:
 
 ```bash
-BLOB_READ_WRITE_TOKEN=<your-vercel-blob-token>
+NUXT_S3_ENDPOINT=<your-s3-endpoint>
+NUXT_S3_REGION=auto
+NUXT_S3_BUCKET=<your-bucket-name>
+NUXT_S3_ACCESS_KEY_ID=<your-access-key-id>
+NUXT_S3_SECRET_ACCESS_KEY=<your-secret-access-key>
 ```
-
-For **S3-compatible storage**, set:
-
-```bash
-S3_ACCESS_KEY_ID=<your-access-key-id>
-S3_SECRET_ACCESS_KEY=<your-secret-access-key>
-S3_BUCKET=<your-bucket-name>
-S3_REGION=<your-region>
-```
-
-> [!NOTE]
-> Without configuration, files are stored locally in `.data/hub/blob` during development.
 
 ## Development Server
 
-Start the development server on `http://localhost:3000`:
+Start the development server on `http://localhost:3004`:
 
 ```bash
 pnpm dev

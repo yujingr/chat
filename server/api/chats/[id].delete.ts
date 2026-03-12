@@ -1,7 +1,7 @@
-import { blob } from 'hub:blob'
 import { db, schema } from 'hub:db'
 import { and, eq } from 'drizzle-orm'
 import { z } from 'zod'
+import { deleteObjectsByPrefix, getChatStoragePrefix } from '../../utils/storage'
 
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
@@ -20,23 +20,11 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const username = session.user?.username || session.id
-  const chatFolder = `${username}/${id}`
+  const ownerId = session.user?.id || session.id
+  const chatFolder = `${getChatStoragePrefix(ownerId, id as string)}/`
 
   try {
-    const { blobs } = await blob.list({
-      prefix: chatFolder
-    })
-
-    if (blobs.length > 0) {
-      await Promise.all(
-        blobs.map(b =>
-          blob.del(b.pathname).catch(error =>
-            console.error('[delete-chat] Failed to delete file:', b.pathname, error)
-          )
-        )
-      )
-    }
+    await deleteObjectsByPrefix(chatFolder)
   } catch (error) {
     console.error('Failed to list/delete chat files:', error)
   }

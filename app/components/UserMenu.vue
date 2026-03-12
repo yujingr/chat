@@ -7,19 +7,11 @@ defineProps<{
 
 const colorMode = useColorMode()
 const appConfig = useAppConfig()
-const { user, clear } = useUserSession()
 
 const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']
 const neutrals = ['slate', 'gray', 'zinc', 'neutral', 'stone']
 
 const items = computed<DropdownMenuItem[][]>(() => ([[{
-  type: 'label',
-  label: user.value?.name || user.value?.username,
-  avatar: {
-    src: user.value?.avatar,
-    alt: user.value?.name || user.value?.username
-  }
-}], [{
   label: 'Theme',
   icon: 'i-lucide-palette',
   children: [{
@@ -131,13 +123,6 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
   icon: 'i-simple-icons-github',
   to: 'https://github.com/nuxt-ui-templates/chat',
   target: '_blank'
-}], [{
-  label: 'Log out',
-  icon: 'i-lucide-log-out',
-  onSelect() {
-    clear()
-    navigateTo('/')
-  }
 }]]))
 </script>
 
@@ -149,13 +134,10 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
   >
     <UButton
       v-bind="{
-        label: collapsed ? undefined : (user?.name || user?.username),
+        label: collapsed ? undefined : 'Settings',
         trailingIcon: collapsed ? undefined : 'i-lucide-chevrons-up-down'
       }"
-      :avatar="{
-        src: user?.avatar || undefined,
-        alt: user?.name || user?.username
-      }"
+      icon="i-lucide-settings-2"
       color="neutral"
       variant="ghost"
       block

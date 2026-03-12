@@ -9,34 +9,13 @@ function createObjectUrl(file: File): string {
   return URL.createObjectURL(file)
 }
 
-function fileToInput(file: File): HTMLInputElement {
-  const dataTransfer = new DataTransfer()
-  dataTransfer.items.add(file)
-
-  const input = document.createElement('input')
-  input.type = 'file'
-  input.files = dataTransfer.files
-
-  return input
-}
-
 export function useFileUploadWithStatus(chatId: string) {
   const files = ref<FileWithStatus[]>([])
   const toast = useToast()
-  const { loggedIn } = useUserSession()
 
   const { csrf, headerName } = useCsrf()
 
-  const upload = useUpload(`/api/upload/${chatId}`, {
-    method: 'PUT',
-    headers: { [headerName]: csrf }
-  })
-
   async function uploadFiles(newFiles: File[]) {
-    if (!loggedIn.value) {
-      return
-    }
-
     const filesWithStatus: FileWithStatus[] = newFiles.map(file => ({
       file,
       id: crypto.randomUUID(),
@@ -51,8 +30,14 @@ export function useFileUploadWithStatus(chatId: string) {
       if (index === -1) return
 
       try {
-        const input = fileToInput(fileWithStatus.file)
-        const response = await upload(input) as BlobResult | BlobResult[] | undefined
+        const formData = new FormData()
+        formData.append('files', fileWithStatus.file)
+
+        const response = await $fetch(`/api/upload/${chatId}`, {
+          method: 'PUT',
+          body: formData,
+          headers: { [headerName]: csrf }
+        }) as BlobResult | BlobResult[] | undefined
 
         if (!response) {
           throw new Error('Upload failed')
@@ -123,7 +108,7 @@ export function useFileUploadWithStatus(chatId: string) {
         method: 'DELETE',
         headers: { [headerName]: csrf }
       }).catch((error) => {
-        console.error('Failed to delete file from blob:', error)
+        console.error('Failed to delete file from storage:', error)
       })
     }
   }

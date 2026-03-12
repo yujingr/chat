@@ -26,6 +26,16 @@ export default defineNuxtConfig({
     }
   },
 
+  runtimeConfig: {
+    s3: {
+      endpoint: '',
+      region: 'auto',
+      bucket: '',
+      accessKeyId: '',
+      secretAccessKey: ''
+    }
+  },
+
   experimental: {
     viewTransition: true
   },
@@ -39,8 +49,7 @@ export default defineNuxtConfig({
   },
 
   hub: {
-    db: 'sqlite',
-    blob: true
+    db: 'sqlite'
   },
 
   vite: {
