@@ -1,5 +1,5 @@
 import type { UIMessage } from 'ai'
-import { convertToModelMessages, createUIMessageStream, createUIMessageStreamResponse, generateText, smoothStream, stepCountIs, streamText } from 'ai'
+import { convertToModelMessages, createUIMessageStream, createUIMessageStreamResponse, gateway, generateText, smoothStream, stepCountIs, streamText } from 'ai'
 import { db, schema } from 'hub:db'
 import { and, eq } from 'drizzle-orm'
 import { z } from 'zod'
@@ -126,7 +126,8 @@ export default defineEventHandler(async (event) => {
         experimental_transform: smoothStream({ chunking: 'word' }),
         tools: {
           weather: weatherTool,
-          chart: chartTool
+          chart: chartTool,
+          perplexity_search: gateway.tools.perplexitySearch()
         }
       })
 
