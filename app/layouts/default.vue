@@ -142,7 +142,7 @@ defineShortcuts({
       <template #default="{ collapsed }">
         <div class="flex flex-col gap-1.5">
           <UButton
-            v-bind="collapsed ? { icon: 'i-lucide-plus' } : { label: 'New chat' }"
+            v-bind="collapsed ? { icon: 'i-lucide-plus' } : { label: '新对话' }"
             variant="soft"
             block
             to="/"
