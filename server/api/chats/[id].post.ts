@@ -1,11 +1,11 @@
-import type { UIMessage } from 'ai'
-import { convertToModelMessages, createUIMessageStream, createUIMessageStreamResponse, gateway, generateText, smoothStream, stepCountIs, streamText } from 'ai'
+import type { ToolSet, UIMessage } from 'ai'
+import { convertToModelMessages, createUIMessageStream, createUIMessageStreamResponse, generateText, smoothStream, stepCountIs, streamText } from 'ai'
 import { db, schema } from 'hub:db'
 import { and, eq } from 'drizzle-orm'
 import { z } from 'zod'
-import type { AnthropicLanguageModelOptions } from '@ai-sdk/anthropic'
-import type { GoogleLanguageModelOptions } from '@ai-sdk/google'
-import type { OpenAILanguageModelResponsesOptions } from '@ai-sdk/openai'
+import { anthropic, type AnthropicLanguageModelOptions } from '@ai-sdk/anthropic'
+import { google, type GoogleLanguageModelOptions } from '@ai-sdk/google'
+import { openai, type OpenAILanguageModelResponsesOptions } from '@ai-sdk/openai'
 import { MODELS } from '#shared/utils/models'
 import { findGlobalPrompt } from '#shared/utils/prompts'
 
@@ -98,6 +98,17 @@ export default defineEventHandler(async (event) => {
 
   const userContext = session.user?.name ? `\nThe user's name is ${session.user.name}.` : ''
 
+  const provider = model.split('/')[0]
+
+  const tools: ToolSet = { weather: weatherTool, chart: chartTool }
+  if (provider === 'anthropic') {
+    tools.web_search = anthropic.tools.webSearch_20250305()
+  } else if (provider === 'openai') {
+    tools.web_search = openai.tools.webSearch({})
+  } else if (provider === 'google') {
+    tools.google_search = google.tools.googleSearch({})
+  }
+
   const stream = createUIMessageStream({
     execute: async ({ writer }) => {
       const result = streamText({
@@ -124,11 +135,7 @@ export default defineEventHandler(async (event) => {
         },
         stopWhen: stepCountIs(5),
         experimental_transform: smoothStream({ chunking: 'word' }),
-        tools: {
-          weather: weatherTool,
-          chart: chartTool,
-          perplexity_search: gateway.tools.perplexitySearch()
-        }
+        tools
       })
 
       if (!chat.title) {

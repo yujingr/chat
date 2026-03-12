@@ -95,32 +95,32 @@ async function deletePrompt(id: string) {
 
 const quickChats = [
   {
-    label: 'Why use Nuxt UI?',
-    icon: 'i-logos-nuxt-icon'
+    label: '今天有什么重要的财经新闻？',
+    icon: 'i-lucide-newspaper'
   },
   {
-    label: 'Help me create a Vue composable',
-    icon: 'i-logos-vue'
+    label: '帮我分析一下当前A股大盘走势',
+    icon: 'i-lucide-line-chart'
   },
   {
-    label: 'Tell me more about UnJS',
-    icon: 'i-logos-unjs'
+    label: '最近有哪些值得关注的投资机会？',
+    icon: 'i-lucide-trending-up'
   },
   {
-    label: 'Why should I consider VueUse?',
-    icon: 'i-logos-vueuse'
+    label: '帮我写一份工作周报总结',
+    icon: 'i-lucide-file-text'
   },
   {
-    label: 'Tailwind CSS best practices',
-    icon: 'i-logos-tailwindcss-icon'
-  },
-  {
-    label: 'What is the weather in Bordeaux?',
+    label: '今天天气怎么样？适合出门吗？',
     icon: 'i-lucide-sun'
   },
   {
-    label: 'Show me a chart of sales data',
-    icon: 'i-lucide-line-chart'
+    label: '推荐几部最近好看的电影或电视剧',
+    icon: 'i-lucide-film'
+  },
+  {
+    label: '帮我翻译一段英文文章',
+    icon: 'i-lucide-languages'
   }
 ]
 </script>
@@ -141,7 +141,7 @@ const quickChats = [
 
         <UContainer class="flex-1 flex flex-col justify-center gap-4 sm:gap-6 py-8">
           <h1 class="text-3xl sm:text-4xl text-highlighted font-bold">
-            How can I help you today?
+            今天我能帮你什么？
           </h1>
 
           <div v-if="prompts.length" class="flex gap-2 overflow-x-auto pb-1 -mb-1 scrollbar-thin">
