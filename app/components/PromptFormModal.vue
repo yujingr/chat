@@ -19,6 +19,7 @@ const form = reactive({
 })
 
 const saving = ref(false)
+const enhancing = ref(false)
 const toast = useToast()
 const { csrf, headerName } = useCsrf()
 
@@ -40,6 +41,29 @@ const ICON_OPTIONS = [
 const isValid = computed(() =>
   form.name.trim().length > 0 && form.content.trim().length > 0
 )
+
+async function enhancePrompt() {
+  if (!form.content.trim() || enhancing.value) return
+  enhancing.value = true
+
+  try {
+    const { content } = await $fetch('/api/prompts/enhance', {
+      method: 'POST',
+      headers: { [headerName]: csrf },
+      body: { content: form.content.trim() }
+    })
+    form.content = content
+    toast.add({ title: 'Prompt enhanced', icon: 'i-lucide-sparkles' })
+  } catch {
+    toast.add({
+      title: 'Failed to enhance prompt',
+      icon: 'i-lucide-alert-circle',
+      color: 'error'
+    })
+  } finally {
+    enhancing.value = false
+  }
+}
 
 async function save() {
   if (!isValid.value) return
@@ -101,6 +125,8 @@ async function save() {
           <UInput
             v-model="form.name"
             placeholder="e.g. My SQL Expert"
+            class="w-full"
+            :disabled="enhancing"
             autofocus
           />
         </UFormField>
@@ -109,6 +135,8 @@ async function save() {
           <UInput
             v-model="form.description"
             placeholder="Brief description of what this prompt does"
+            class="w-full"
+            :disabled="enhancing"
           />
         </UFormField>
 
@@ -118,16 +146,32 @@ async function save() {
             :items="ICON_OPTIONS"
             value-key="value"
             :icon="form.icon"
-            size="sm"
+            class="w-full"
+            :disabled="enhancing"
           />
         </UFormField>
 
         <UFormField label="System Prompt" required>
+          <template #hint>
+            <UTooltip text="Enhance with AI" :delay-duration="200">
+              <UButton
+                icon="i-lucide-sparkles"
+                size="xs"
+                variant="ghost"
+                color="primary"
+                :loading="enhancing"
+                :disabled="!form.content.trim() || enhancing"
+                @click="enhancePrompt"
+              />
+            </UTooltip>
+          </template>
           <UTextarea
             v-model="form.content"
             placeholder="You are an expert..."
             :rows="6"
+            class="w-full"
             autoresize
+            :disabled="enhancing"
           />
         </UFormField>
       </div>
@@ -137,13 +181,14 @@ async function save() {
       <UButton
         :label="isEdit ? 'Save' : 'Create'"
         :loading="saving"
-        :disabled="!isValid"
+        :disabled="!isValid || enhancing"
         @click="save"
       />
       <UButton
         color="neutral"
         variant="ghost"
         label="Cancel"
+        :disabled="enhancing"
         @click="emit('close', false)"
       />
     </template>

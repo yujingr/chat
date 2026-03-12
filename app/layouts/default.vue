@@ -192,11 +192,11 @@ defineShortcuts({
     </UDashboardSidebar>
 
     <UDashboardSearch
-      placeholder="Search chats..."
+      placeholder="搜索对话。。。"
       :groups="[{
         id: 'links',
         items: [{
-          label: 'New chat',
+          label: '新对话',
           to: '/',
           icon: 'i-lucide-square-pen'
         }]
@@ -237,11 +237,11 @@ defineShortcuts({
           <div>
             <div class="flex items-center justify-between mb-2">
               <p class="text-xs font-medium text-muted uppercase tracking-wide">
-                Your Prompts
+                你的提示词
               </p>
               <UButton
                 icon="i-lucide-plus"
-                label="New"
+                label="新建"
                 size="xs"
                 variant="ghost"
                 @click="openPromptForm()"
@@ -249,7 +249,7 @@ defineShortcuts({
             </div>
 
             <div v-if="userPrompts.length === 0" class="text-sm text-muted py-4 text-center">
-              No custom prompts yet.
+              还没有自定义提示词。
             </div>
 
             <div v-else class="flex flex-col gap-2">

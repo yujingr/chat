@@ -23,10 +23,10 @@ const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 
 const neutrals = ['slate', 'gray', 'zinc', 'neutral', 'stone']
 
 const items = computed<DropdownMenuItem[][]>(() => ([[{
-  label: 'Theme',
+  label: '主题',
   icon: 'i-lucide-palette',
   children: [{
-    label: 'Primary',
+    label: '主色调',
     slot: 'chip',
     chip: appConfig.ui.colors.primary,
     content: {
@@ -67,7 +67,7 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
     }))
   }]
 }, {
-  label: 'Appearance',
+  label: '外观',
   icon: 'i-lucide-sun-moon',
   children: [{
     label: 'Light',
@@ -108,7 +108,7 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
   >
     <UButton
       v-bind="{
-        label: collapsed ? undefined : 'Settings',
+        label: collapsed ? undefined : '设置',
         trailingIcon: collapsed ? undefined : 'i-lucide-chevrons-up-down'
       }"
       icon="i-lucide-settings-2"
