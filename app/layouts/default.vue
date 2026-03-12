@@ -26,6 +26,8 @@ const deletePromptModal = overlay.create(LazyModalConfirm, {
 const { userPrompts, globalPrompts, refreshPrompts } = usePrompts()
 
 async function openPromptForm(prompt?: PromptEntry) {
+  promptsSlideover.value = false
+  await nextTick()
   const formModal = overlay.create(LazyPromptFormModal, {
     props: { prompt: prompt ?? null }
   })
@@ -171,7 +173,7 @@ defineShortcuts({
           :ui="{ link: 'overflow-hidden' }"
         >
           <template #chat-trailing="{ item }">
-            <div class="flex -mr-1.25 translate-x-full group-hover:translate-x-0 transition-transform">
+            <div class="flex -mr-1.25 lg:translate-x-full lg:group-hover:translate-x-0 transition-transform">
               <UButton
                 icon="i-lucide-x"
                 color="neutral"

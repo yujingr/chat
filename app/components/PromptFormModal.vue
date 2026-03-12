@@ -113,18 +113,18 @@ async function save() {
 
 <template>
   <UModal
-    :title="isEdit ? 'Edit Prompt' : 'Create Prompt'"
-    :description="isEdit ? 'Modify your custom prompt.' : 'Create a reusable system prompt for your chats.'"
+    :title="isEdit ? '编辑提示词' : '创建提示词'"
+    :description="isEdit ? '修改你的自定义提示词。' : '创建一个可重复使用的系统提示词用于你的对话。'"
     :ui="{ footer: 'flex-row-reverse justify-start' }"
     :close="false"
     :dismissible="false"
   >
     <template #body>
       <div class="flex flex-col gap-4">
-        <UFormField label="Name" required>
+        <UFormField label="名称" required>
           <UInput
             v-model="form.name"
-            placeholder="e.g. My SQL Expert"
+            placeholder="例如：我的健康专家"
             class="w-full"
             :disabled="enhancing"
             autofocus
@@ -134,13 +134,13 @@ async function save() {
         <UFormField label="Description">
           <UInput
             v-model="form.description"
-            placeholder="Brief description of what this prompt does"
+            placeholder="简要描述这个提示词的作用"
             class="w-full"
             :disabled="enhancing"
           />
         </UFormField>
 
-        <UFormField label="Icon">
+        <UFormField label="图标">
           <USelectMenu
             v-model="form.icon"
             :items="ICON_OPTIONS"
@@ -151,9 +151,9 @@ async function save() {
           />
         </UFormField>
 
-        <UFormField label="System Prompt" required>
+        <UFormField label="系统提示词" required>
           <template #hint>
-            <UTooltip text="Enhance with AI" :delay-duration="200">
+            <UTooltip text="使用AI增强" :delay-duration="200">
               <UButton
                 icon="i-lucide-sparkles"
                 size="xs"
@@ -167,7 +167,7 @@ async function save() {
           </template>
           <UTextarea
             v-model="form.content"
-            placeholder="You are an expert..."
+            placeholder="你是一个专家..."
             :rows="6"
             class="w-full"
             autoresize
@@ -179,7 +179,7 @@ async function save() {
 
     <template #footer>
       <UButton
-        :label="isEdit ? 'Save' : 'Create'"
+        :label="isEdit ? '保存' : '创建'"
         :loading="saving"
         :disabled="!isValid || enhancing"
         @click="save"
@@ -187,7 +187,7 @@ async function save() {
       <UButton
         color="neutral"
         variant="ghost"
-        label="Cancel"
+        label="取消"
         :disabled="enhancing"
         @click="emit('close', false)"
       />
