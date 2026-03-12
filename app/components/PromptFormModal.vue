@@ -5,6 +5,8 @@ const props = defineProps<{
   prompt?: PromptEntry | null
 }>()
 
+const open = defineModel('open', { default: true })
+
 const emit = defineEmits<{
   close: [saved: boolean]
 }>()
@@ -113,6 +115,7 @@ async function save() {
 
 <template>
   <UModal
+    v-model:open="open"
     :title="isEdit ? '编辑提示词' : '创建提示词'"
     :description="isEdit ? '修改你的自定义提示词。' : '创建一个可重复使用的系统提示词用于你的对话。'"
     :ui="{ footer: 'flex-row-reverse justify-start' }"
