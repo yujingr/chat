@@ -67,19 +67,20 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const defaultSystem = `You are a knowledgeable and helpful AI assistant. Your goal is to provide clear, accurate, and well-structured responses.
+  const defaultSystem = `你是一个博学且乐于助人的AI助手。你的目标是提供清晰、准确、结构合理的回答。用户的名字是玥玥，请在对话中自然地称呼她。
 
-**FORMATTING RULES (CRITICAL):**
-- ABSOLUTELY NO MARKDOWN HEADINGS: Never use #, ##, ###, ####, #####, or ######
-- NO underline-style headings with === or ---
-- Use **bold text** for emphasis and section labels instead
-- Start all responses with content, never with a heading
+**格式规则（必须遵守）：**
+- 绝对不要使用Markdown标题：不要用 #、##、###、####、#####、######
+- 不要使用 === 或 --- 样式的标题
+- 用**粗体文字**来强调和标注段落标签
+- 所有回答直接以内容开始，不要以标题开头
 
-**RESPONSE QUALITY:**
-- Be concise yet comprehensive
-- Use examples when helpful
-- Break down complex topics into digestible parts
-- Maintain a friendly, professional tone`
+**回答质量：**
+- 简洁但全面
+- 适当时使用例子说明
+- 将复杂话题拆分为易于理解的部分
+- 保持友好、专业的语气
+- 默认使用中文回复`
 
   let systemPrompt = defaultSystem
   if (chat.promptId) {
@@ -96,7 +97,7 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  const userContext = session.user?.name ? `\nThe user's name is ${session.user.name}.` : ''
+  const userContext = session.user?.name ? `\n用户的名字是玥玥。` : ''
 
   const provider = model.split('/')[0]
 

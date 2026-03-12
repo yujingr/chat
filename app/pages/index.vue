@@ -141,7 +141,7 @@ const quickChats = [
 
         <UContainer class="flex-1 flex flex-col justify-center gap-4 sm:gap-6 py-8">
           <h1 class="text-3xl sm:text-4xl text-highlighted font-bold">
-            今天我能帮你什么？
+            玥玥你好，今天我能帮你什么？
           </h1>
 
           <div v-if="prompts.length" class="flex gap-2 overflow-x-auto pb-1 -mb-1 scrollbar-thin">
