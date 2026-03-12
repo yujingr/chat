@@ -49,6 +49,9 @@ const input = ref('')
 
 const { csrf, headerName } = useCsrf()
 
+const { findPromptById } = usePrompts()
+const activePrompt = computed(() => findPromptById(data.value?.promptId ?? null))
+
 const chat = new Chat({
   id: data.value.id,
   messages: data.value.messages,
@@ -121,6 +124,16 @@ onMounted(() => {
         <DragDropOverlay :show="isDragging" />
 
         <UContainer class="flex-1 flex flex-col gap-4 sm:gap-6">
+          <div v-if="activePrompt" class="flex items-center gap-2 pt-2 lg:pt-(--ui-header-height)">
+            <UBadge
+              :label="activePrompt.name"
+              :icon="activePrompt.icon || 'i-lucide-message-square'"
+              color="neutral"
+              variant="subtle"
+              size="sm"
+            />
+          </div>
+
           <UChatMessages
             should-auto-scroll
             :messages="chat.messages"

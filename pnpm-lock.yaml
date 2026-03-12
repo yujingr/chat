@@ -29,6 +29,9 @@ importers:
       '@aws-sdk/s3-request-presigner':
         specifier: ^3.1007.0
         version: 3.1007.0
+      '@electric-sql/pglite':
+        specifier: ^0.3.16
+        version: 0.3.16
       '@iconify-json/logos':
         specifier: ^1.2.10
         version: 1.2.10
@@ -43,10 +46,10 @@ importers:
         version: 0.17.0
       '@nuxt/ui':
         specifier: ^4.5.1
-        version: 4.5.1(@tiptap/extensions@3.20.1(@tiptap/core@3.20.1(@tiptap/pm@3.20.1))(@tiptap/pm@3.20.1))(@tiptap/y-tiptap@3.0.2(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.6)(y-protocols@1.0.7(yjs@13.6.29))(yjs@13.6.29))(@vercel/blob@2.3.1)(change-case@5.4.4)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(embla-carousel@8.6.0)(ioredis@5.10.0)(magicast@0.5.2)(tailwindcss@4.2.1)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))(yjs@13.6.29)(zod@4.3.6)
+        version: 4.5.1(@tiptap/extensions@3.20.1(@tiptap/core@3.20.1(@tiptap/pm@3.20.1))(@tiptap/pm@3.20.1))(@tiptap/y-tiptap@3.0.2(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.6)(y-protocols@1.0.7(yjs@13.6.29))(yjs@13.6.29))(@vercel/blob@2.3.1)(change-case@5.4.4)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(embla-carousel@8.6.0)(ioredis@5.10.0)(magicast@0.5.2)(tailwindcss@4.2.1)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))(yjs@13.6.29)(zod@4.3.6)
       '@nuxthub/core':
         specifier: ^0.10.7
-        version: 0.10.7(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)(magicast@0.5.2)(typescript@5.9.3)(vue-tsc@3.2.5(typescript@5.9.3))
+        version: 0.10.7(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)(magicast@0.5.2)(typescript@5.9.3)(vue-tsc@3.2.5(typescript@5.9.3))
       '@nuxtjs/mdc':
         specifier: ^0.20.2
         version: 0.20.2(magicast@0.5.2)
@@ -61,13 +64,13 @@ importers:
         version: 4.1.0
       drizzle-orm:
         specifier: ^0.45.1
-        version: 0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)
+        version: 0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)
       motion-v:
         specifier: ^1.10.3
         version: 1.10.3(@vueuse/core@14.2.1(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))
       nuxt:
         specifier: ^4.3.1
-        version: 4.3.1(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2)
+        version: 4.3.1(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2)
       nuxt-auth-utils:
         specifier: ^0.5.29
         version: 0.5.29(magicast@0.5.2)
@@ -80,6 +83,9 @@ importers:
       pg:
         specifier: ^8.20.0
         version: 8.20.0
+      postgres:
+        specifier: ^3.4.8
+        version: 3.4.8
       shiki:
         specifier: ^3.23.0
         version: 3.23.0
@@ -510,6 +516,9 @@ packages:
 
   '@dxup/unimport@0.1.2':
     resolution: {integrity: sha512-/B8YJGPzaYq1NbsQmwgP8EZqg40NpTw4ZB3suuI0TplbxKHeK94jeaawLmVhCv+YwUnOpiWEz9U6SeThku/8JQ==}
+
+  '@electric-sql/pglite@0.3.16':
+    resolution: {integrity: sha512-mZkZfOd9OqTMHsK+1cje8OSzfAQcpD7JmILXTl5ahdempjUDdmg4euf1biDex5/LfQIDJ3gvCu6qDgdnDxfJmA==}
 
   '@emnapi/core@1.8.1':
     resolution: {integrity: sha512-AvT9QFpxK0Zd8J0jopedNm+w/2fIzvtPKPjqyw9jwvBaReTTqPBk9Hixaz7KbjimP+QNz605/XnjFcDAL2pqBg==}
@@ -6322,6 +6331,10 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
+  postgres@3.4.8:
+    resolution: {integrity: sha512-d+JFcLM17njZaOLkv6SCev7uoLaBtfK86vMUXhW1Z4glPWh4jozno9APvW/XKFJ3CCxVoC7OL38BqRydtu5nGg==}
+    engines: {node: '>=12'}
+
   potpack@1.0.2:
     resolution: {integrity: sha512-choctRBIV9EMT9WGAZHn3V7t0Z2pMQyl0EZE6pFc/6ml3ssw7Dlf/oAOvFwjm1HVsqfQN8GfeFyJ+d8tRzqueQ==}
 
@@ -8337,6 +8350,8 @@ snapshots:
 
   '@dxup/unimport@0.1.2': {}
 
+  '@electric-sql/pglite@0.3.16': {}
+
   '@emnapi/core@1.8.1':
     dependencies:
       '@emnapi/wasi-threads': 1.1.0
@@ -9111,13 +9126,13 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@nuxt/fonts@0.14.0(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)(magicast@0.5.2)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))':
+  '@nuxt/fonts@0.14.0(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)(magicast@0.5.2)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@nuxt/devtools-kit': 3.2.3(magicast@0.5.2)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
       consola: 3.4.2
       defu: 6.1.4
-      fontless: 0.2.1(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))
+      fontless: 0.2.1(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))
       h3: 1.15.6
       magic-regexp: 0.10.0
       ofetch: 1.5.1
@@ -9127,7 +9142,7 @@ snapshots:
       ufo: 1.6.3
       unifont: 0.7.4
       unplugin: 3.0.0
-      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)
+      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -9223,7 +9238,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/nitro-server@4.3.1(ca5f680e3a5d0ffb29b3c8d0918b6b0d)':
+  '@nuxt/nitro-server@4.3.1(3ad30dba52be26cbcb7e80b518b35bc8)':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
@@ -9240,8 +9255,8 @@ snapshots:
       impound: 1.1.2
       klona: 2.0.6
       mocked-exports: 0.1.1
-      nitropack: 2.13.1(@libsql/client@0.17.0)(@vercel/blob@2.3.1)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))(rolldown@1.0.0-beta.57)
-      nuxt: 4.3.1(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2)
+      nitropack: 2.13.1(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@vercel/blob@2.3.1)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8))(rolldown@1.0.0-beta.57)
+      nuxt: 4.3.1(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2)
       ohash: 2.0.11
       pathe: 2.0.3
       pkg-types: 2.3.0
@@ -9249,7 +9264,7 @@ snapshots:
       std-env: 3.10.0
       ufo: 1.6.3
       unctx: 2.5.0
-      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)
+      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)
       vue: 3.5.30(typescript@5.9.3)
       vue-bundle-renderer: 2.2.0
       vue-devtools-stub: 0.1.0
@@ -9306,13 +9321,13 @@ snapshots:
       rc9: 3.0.0
       std-env: 3.10.0
 
-  '@nuxt/ui@4.5.1(@tiptap/extensions@3.20.1(@tiptap/core@3.20.1(@tiptap/pm@3.20.1))(@tiptap/pm@3.20.1))(@tiptap/y-tiptap@3.0.2(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.6)(y-protocols@1.0.7(yjs@13.6.29))(yjs@13.6.29))(@vercel/blob@2.3.1)(change-case@5.4.4)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(embla-carousel@8.6.0)(ioredis@5.10.0)(magicast@0.5.2)(tailwindcss@4.2.1)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))(yjs@13.6.29)(zod@4.3.6)':
+  '@nuxt/ui@4.5.1(@tiptap/extensions@3.20.1(@tiptap/core@3.20.1(@tiptap/pm@3.20.1))(@tiptap/pm@3.20.1))(@tiptap/y-tiptap@3.0.2(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.6)(y-protocols@1.0.7(yjs@13.6.29))(yjs@13.6.29))(@vercel/blob@2.3.1)(change-case@5.4.4)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(embla-carousel@8.6.0)(ioredis@5.10.0)(magicast@0.5.2)(tailwindcss@4.2.1)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))(yjs@13.6.29)(zod@4.3.6)':
     dependencies:
       '@floating-ui/dom': 1.7.6
       '@iconify/vue': 5.0.0(vue@3.5.30(typescript@5.9.3))
       '@internationalized/date': 3.12.0
       '@internationalized/number': 3.6.5
-      '@nuxt/fonts': 0.14.0(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)(magicast@0.5.2)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))
+      '@nuxt/fonts': 0.14.0(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)(magicast@0.5.2)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))
       '@nuxt/icon': 2.2.1(magicast@0.5.2)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.30(typescript@5.9.3))
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
       '@nuxt/schema': 4.3.1
@@ -9419,7 +9434,7 @@ snapshots:
       - vue
       - yjs
 
-  '@nuxt/vite-builder@4.3.1(@types/node@24.12.0)(eslint@10.0.3(jiti@2.6.1))(lightningcss@1.32.0)(magicast@0.5.2)(nuxt@4.3.1(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2))(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vue-tsc@3.2.5(typescript@5.9.3))(vue@3.5.30(typescript@5.9.3))(yaml@2.8.2)':
+  '@nuxt/vite-builder@4.3.1(076501f0ced0b95f4f78065513d8dea7)':
     dependencies:
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
       '@rollup/plugin-replace': 6.0.3(rollup@4.59.0)
@@ -9438,7 +9453,7 @@ snapshots:
       magic-string: 0.30.21
       mlly: 1.8.1
       mocked-exports: 0.1.1
-      nuxt: 4.3.1(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2)
+      nuxt: 4.3.1(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2)
       pathe: 2.0.3
       pkg-types: 2.3.0
       postcss: 8.5.8
@@ -9479,7 +9494,7 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxthub/core@0.10.7(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)(magicast@0.5.2)(typescript@5.9.3)(vue-tsc@3.2.5(typescript@5.9.3))':
+  '@nuxthub/core@0.10.7(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)(magicast@0.5.2)(typescript@5.9.3)(vue-tsc@3.2.5(typescript@5.9.3))':
     dependencies:
       '@cloudflare/workers-types': 4.20260307.1
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
@@ -9504,7 +9519,7 @@ snapshots:
       tsdown: 0.18.4(typescript@5.9.3)(vue-tsc@3.2.5(typescript@5.9.3))
       ufo: 1.6.3
       uncrypto: 0.1.3
-      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)
+      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)
       zod: 4.3.6
     transitivePeerDependencies:
       - '@arethetypeswrong/core'
@@ -12229,10 +12244,11 @@ snapshots:
 
   date-fns@4.1.0: {}
 
-  db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)):
+  db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)):
     optionalDependencies:
+      '@electric-sql/pglite': 0.3.16
       '@libsql/client': 0.17.0
-      drizzle-orm: 0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)
+      drizzle-orm: 0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)
 
   debug@4.4.3:
     dependencies:
@@ -12318,12 +12334,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0):
+  drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8):
     optionalDependencies:
       '@cloudflare/workers-types': 4.20260307.1
+      '@electric-sql/pglite': 0.3.16
       '@libsql/client': 0.17.0
       '@opentelemetry/api': 1.9.0
       pg: 8.20.0
+      postgres: 3.4.8
 
   dts-resolver@2.1.3: {}
 
@@ -12845,7 +12863,7 @@ snapshots:
     dependencies:
       tiny-inflate: 1.0.3
 
-  fontless@0.2.1(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2)):
+  fontless@0.2.1(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2)):
     dependencies:
       consola: 3.4.2
       css-tree: 3.2.1
@@ -12859,7 +12877,7 @@ snapshots:
       pathe: 2.0.3
       ufo: 1.6.3
       unifont: 0.7.4
-      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)
+      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)
     optionalDependencies:
       vite: 7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2)
     transitivePeerDependencies:
@@ -14060,7 +14078,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  nitropack@2.13.1(@libsql/client@0.17.0)(@vercel/blob@2.3.1)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))(rolldown@1.0.0-beta.57):
+  nitropack@2.13.1(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@vercel/blob@2.3.1)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8))(rolldown@1.0.0-beta.57):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.2
       '@rollup/plugin-alias': 6.0.0(rollup@4.59.0)
@@ -14081,7 +14099,7 @@ snapshots:
       cookie-es: 2.0.0
       croner: 9.1.0
       crossws: 0.3.5
-      db0: 0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))
+      db0: 0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8))
       defu: 6.1.4
       destr: 2.0.5
       dot-prop: 10.1.0
@@ -14127,7 +14145,7 @@ snapshots:
       unenv: 2.0.0-rc.24
       unimport: 5.7.0
       unplugin-utils: 0.3.1
-      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0)
+      unstorage: 1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0)
       untyped: 2.0.0
       unwasm: 0.5.3
       youch: 4.1.0
@@ -14246,16 +14264,16 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  nuxt@4.3.1(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2):
+  nuxt@4.3.1(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2):
     dependencies:
       '@dxup/nuxt': 0.3.2(magicast@0.5.2)
       '@nuxt/cli': 3.33.1(@nuxt/schema@4.3.1)(cac@6.7.14)(magicast@0.5.2)
       '@nuxt/devtools': 3.2.3(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.30(typescript@5.9.3))
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
-      '@nuxt/nitro-server': 4.3.1(ca5f680e3a5d0ffb29b3c8d0918b6b0d)
+      '@nuxt/nitro-server': 4.3.1(3ad30dba52be26cbcb7e80b518b35bc8)
       '@nuxt/schema': 4.3.1
       '@nuxt/telemetry': 2.7.0(@nuxt/kit@4.3.1(magicast@0.5.2))
-      '@nuxt/vite-builder': 4.3.1(@types/node@24.12.0)(eslint@10.0.3(jiti@2.6.1))(lightningcss@1.32.0)(magicast@0.5.2)(nuxt@4.3.1(@libsql/client@0.17.0)(@parcel/watcher@2.5.6)(@types/node@24.12.0)(@vercel/blob@2.3.1)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))(eslint@10.0.3(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2))(optionator@0.9.4)(rolldown@1.0.0-beta.57)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vue-tsc@3.2.5(typescript@5.9.3))(vue@3.5.30(typescript@5.9.3))(yaml@2.8.2)
+      '@nuxt/vite-builder': 4.3.1(076501f0ced0b95f4f78065513d8dea7)
       '@unhead/vue': 2.1.10(vue@3.5.30(typescript@5.9.3))
       '@vue/shared': 3.5.30
       c12: 3.3.3(magicast@0.5.2)
@@ -14839,6 +14857,8 @@ snapshots:
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+
+  postgres@3.4.8: {}
 
   potpack@1.0.2: {}
 
@@ -15911,7 +15931,7 @@ snapshots:
     dependencies:
       rolldown: 1.0.0-rc.8
 
-  unstorage@1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)))(ioredis@5.10.0):
+  unstorage@1.17.4(@vercel/blob@2.3.1)(db0@0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8)))(ioredis@5.10.0):
     dependencies:
       anymatch: 3.1.3
       chokidar: 5.0.0
@@ -15923,7 +15943,7 @@ snapshots:
       ufo: 1.6.3
     optionalDependencies:
       '@vercel/blob': 2.3.1
-      db0: 0.3.4(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0))
+      db0: 0.3.4(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260307.1)(@electric-sql/pglite@0.3.16)(@libsql/client@0.17.0)(@opentelemetry/api@1.9.0)(pg@8.20.0)(postgres@3.4.8))
       ioredis: 5.10.0
 
   untun@0.1.3:

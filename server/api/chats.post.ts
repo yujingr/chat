@@ -4,15 +4,17 @@ import { z } from 'zod'
 
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
-  const { id, message } = await readValidatedBody(event, z.object({
+  const { id, message, promptId } = await readValidatedBody(event, z.object({
     id: z.string(),
-    message: z.custom<UIMessage>()
+    message: z.custom<UIMessage>(),
+    promptId: z.string().nullish()
   }).parse)
 
   const [chat] = await db.insert(schema.chats).values({
     id,
     title: '',
-    userId: session.user?.id || session.id
+    userId: session.user?.id || session.id,
+    promptId: promptId ?? null
   }).returning()
 
   if (!chat) {

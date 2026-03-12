@@ -7,6 +7,7 @@ import type { AnthropicLanguageModelOptions } from '@ai-sdk/anthropic'
 import type { GoogleLanguageModelOptions } from '@ai-sdk/google'
 import type { OpenAILanguageModelResponsesOptions } from '@ai-sdk/openai'
 import { MODELS } from '#shared/utils/models'
+import { findGlobalPrompt } from '#shared/utils/prompts'
 
 defineRouteMeta({
   openAPI: {
@@ -66,26 +67,42 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const stream = createUIMessageStream({
-    execute: async ({ writer }) => {
-      const result = streamText({
-        model,
-        system: `You are a knowledgeable and helpful AI assistant. ${session.user?.username ? `The user's name is ${session.user.username}.` : ''} Your goal is to provide clear, accurate, and well-structured responses.
+  const defaultSystem = `You are a knowledgeable and helpful AI assistant. Your goal is to provide clear, accurate, and well-structured responses.
 
 **FORMATTING RULES (CRITICAL):**
 - ABSOLUTELY NO MARKDOWN HEADINGS: Never use #, ##, ###, ####, #####, or ######
 - NO underline-style headings with === or ---
 - Use **bold text** for emphasis and section labels instead
-- Examples:
-  * Instead of "## Usage", write "**Usage:**" or just "Here's how to use it:"
-  * Instead of "# Complete Guide", write "**Complete Guide**" or start directly with content
 - Start all responses with content, never with a heading
 
 **RESPONSE QUALITY:**
 - Be concise yet comprehensive
 - Use examples when helpful
 - Break down complex topics into digestible parts
-- Maintain a friendly, professional tone`,
+- Maintain a friendly, professional tone`
+
+  let systemPrompt = defaultSystem
+  if (chat.promptId) {
+    const global = findGlobalPrompt(chat.promptId)
+    if (global) {
+      systemPrompt = global.content
+    } else {
+      const userPrompt = await db.query.prompts.findFirst({
+        where: () => eq(schema.prompts.id, chat.promptId!)
+      })
+      if (userPrompt) {
+        systemPrompt = userPrompt.content
+      }
+    }
+  }
+
+  const userContext = session.user?.username ? `\nThe user's name is ${session.user.username}.` : ''
+
+  const stream = createUIMessageStream({
+    execute: async ({ writer }) => {
+      const result = streamText({
+        model,
+        system: systemPrompt + userContext,
         messages: await convertToModelMessages(messages),
         providerOptions: {
           anthropic: {

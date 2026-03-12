@@ -1,5 +1,7 @@
 export const MODELS = [
+  { label: 'Claude Sonnet 4.6', value: 'anthropic/claude-sonnet-4.6', icon: 'i-simple-icons-anthropic' },
   { label: 'GPT-5 Nano', value: 'openai/gpt-5-nano', icon: 'i-simple-icons-openai' },
-  { label: 'Claude Haiku 4.5', value: 'anthropic/claude-haiku-4.5', icon: 'i-simple-icons-anthropic' },
-  { label: 'Gemini 3 Flash', value: 'google/gemini-3-flash', icon: 'i-simple-icons-google' }
+  { label: 'Gemini 3.1 Flash Image Preview', value: 'google/gemini-3.1-flash-image-preview', icon: 'i-simple-icons-google' },
+  { label: 'Gemini 3.1 Pro Preview', value: 'google/gemini-3.1-pro-preview', icon: 'i-simple-icons-google'},
+  { label: 'GPT-5.4', value: 'openai/gpt-5.4', icon: 'i-simple-icons-openai'}
 ]

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { LazyPromptFormModal, LazyModalConfirm } from '#components'
+import type { PromptEntry } from '~/composables/usePrompts'
+
 const input = ref('')
 const loading = ref(false)
 const chatId = crypto.randomUUID()
@@ -15,6 +18,18 @@ const {
 } = useFileUploadWithStatus(chatId)
 
 const { csrf, headerName } = useCsrf()
+const { loggedIn } = useUserSession()
+const overlay = useOverlay()
+const toast = useToast()
+
+const { prompts, selectedPromptId, selectPrompt, refreshPrompts } = usePrompts()
+
+const deleteModal = overlay.create(LazyModalConfirm, {
+  props: {
+    title: 'Delete prompt',
+    description: 'Are you sure you want to delete this prompt? Existing chats using it will fall back to the default assistant.'
+  }
+})
 
 async function createChat(prompt: string) {
   input.value = prompt
@@ -34,7 +49,8 @@ async function createChat(prompt: string) {
       message: {
         role: 'user',
         parts
-      }
+      },
+      promptId: selectedPromptId.value
     }
   })
 
@@ -45,6 +61,37 @@ async function createChat(prompt: string) {
 async function onSubmit() {
   await createChat(input.value)
   clearFiles()
+}
+
+async function openPromptForm(prompt?: PromptEntry) {
+  const formModal = overlay.create(LazyPromptFormModal, {
+    props: { prompt: prompt ?? null }
+  })
+  const instance = formModal.open()
+  const saved = await instance.result
+  if (saved) {
+    refreshPrompts()
+  }
+}
+
+async function deletePrompt(id: string) {
+  const instance = deleteModal.open()
+  const result = await instance.result
+  if (!result) return
+
+  try {
+    await $fetch(`/api/prompts/${id}`, {
+      method: 'DELETE',
+      headers: { [headerName]: csrf }
+    })
+    toast.add({ title: 'Prompt deleted', icon: 'i-lucide-trash' })
+    if (selectedPromptId.value === id) {
+      selectedPromptId.value = null
+    }
+    refreshPrompts()
+  } catch {
+    toast.add({ title: 'Failed to delete prompt', icon: 'i-lucide-alert-circle', color: 'error' })
+  }
 }
 
 const quickChats = [
@@ -97,6 +144,45 @@ const quickChats = [
           <h1 class="text-3xl sm:text-4xl text-highlighted font-bold">
             How can I help you today?
           </h1>
+
+          <div v-if="prompts.length" class="flex gap-2 overflow-x-auto pb-1 -mb-1 scrollbar-thin">
+            <PromptCard
+              v-for="p in prompts"
+              :key="p.id"
+              :prompt="p"
+              :selected="selectedPromptId === p.id"
+              @select="selectPrompt(p.id)"
+              @edit="openPromptForm(p)"
+              @delete="deletePrompt(p.id)"
+            />
+
+            <button
+              v-if="loggedIn"
+              class="flex flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed border-default hover:border-muted hover:bg-elevated/50 p-3 min-w-[180px] max-w-[220px] shrink-0 transition-all cursor-pointer"
+              @click="openPromptForm()"
+            >
+              <UIcon name="i-lucide-plus" class="size-5 text-muted" />
+              <span class="text-sm text-muted">Create Prompt</span>
+            </button>
+          </div>
+
+          <div v-if="selectedPromptId" class="flex items-center gap-2">
+            <UBadge
+              :label="prompts.find(p => p.id === selectedPromptId)?.name"
+              :icon="prompts.find(p => p.id === selectedPromptId)?.icon || 'i-lucide-message-square'"
+              color="primary"
+              variant="subtle"
+              size="sm"
+            />
+            <UButton
+              icon="i-lucide-x"
+              size="xs"
+              color="neutral"
+              variant="ghost"
+              class="text-muted"
+              @click="selectedPromptId = null"
+            />
+          </div>
 
           <UChatPrompt
             v-model="input"
