@@ -96,7 +96,7 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  const userContext = session.user?.username ? `\nThe user's name is ${session.user.username}.` : ''
+  const userContext = session.user?.name ? `\nThe user's name is ${session.user.name}.` : ''
 
   const stream = createUIMessageStream({
     execute: async ({ writer }) => {

@@ -7,6 +7,17 @@ defineProps<{
 
 const colorMode = useColorMode()
 const appConfig = useAppConfig()
+const { clear: clearSession } = useUserSession()
+const { csrf, headerName } = useCsrf()
+
+async function logout() {
+  await $fetch('/api/auth/logout', {
+    method: 'POST',
+    headers: { [headerName]: csrf }
+  })
+  await clearSession()
+  navigateTo('/login')
+}
 
 const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']
 const neutrals = ['slate', 'gray', 'zinc', 'neutral', 'stone']
@@ -123,6 +134,10 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
   icon: 'i-simple-icons-github',
   to: 'https://github.com/nuxt-ui-templates/chat',
   target: '_blank'
+}], [{
+  label: 'Log out',
+  icon: 'i-lucide-log-out',
+  onSelect: () => logout()
 }]]))
 </script>
 

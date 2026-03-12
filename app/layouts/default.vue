@@ -6,8 +6,6 @@ const route = useRoute()
 const toast = useToast()
 const overlay = useOverlay()
 const { csrf, headerName } = useCsrf()
-const { loggedIn } = useUserSession()
-
 const open = ref(false)
 const promptsSlideover = ref(false)
 
@@ -242,7 +240,6 @@ defineShortcuts({
                 Your Prompts
               </p>
               <UButton
-                v-if="loggedIn"
                 icon="i-lucide-plus"
                 label="New"
                 size="xs"
@@ -251,11 +248,7 @@ defineShortcuts({
               />
             </div>
 
-            <div v-if="!loggedIn" class="text-sm text-muted py-4 text-center">
-              Log in to create custom prompts.
-            </div>
-
-            <div v-else-if="userPrompts.length === 0" class="text-sm text-muted py-4 text-center">
+            <div v-if="userPrompts.length === 0" class="text-sm text-muted py-4 text-center">
               No custom prompts yet.
             </div>
 

@@ -18,7 +18,6 @@ const {
 } = useFileUploadWithStatus(chatId)
 
 const { csrf, headerName } = useCsrf()
-const { loggedIn } = useUserSession()
 const overlay = useOverlay()
 const toast = useToast()
 
@@ -157,7 +156,6 @@ const quickChats = [
             />
 
             <button
-              v-if="loggedIn"
               class="flex flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed border-default hover:border-muted hover:bg-elevated/50 p-3 min-w-[180px] max-w-[220px] shrink-0 transition-all cursor-pointer"
               @click="openPromptForm()"
             >
