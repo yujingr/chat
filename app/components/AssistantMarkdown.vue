@@ -9,26 +9,40 @@ const props = defineProps<{
   parserOptions?: Record<string, unknown>
 }>()
 
-const { data: parsed } = await useAsyncData(
-  () => `assistant-md:${props.cacheKey}`,
-  async () => {
-    const v = props.value
-    if (!v?.trim()) {
-      return null
-    }
-    return await parseMarkdown(v, {
-      ...props.parserOptions,
-      toc: false,
-      contentHeading: false
-    })
-  },
-  {
-    watch: [() => props.value],
-    dedupe: 'cancel'
-  }
-)
+const body = shallowRef<any>(null)
+const parsedData = shallowRef<any>(null)
 
-const body = computed(() => parsed.value?.body)
+let parser: ((value: string) => Promise<any>) | null = null
+
+async function parseValue(value: string) {
+  if (!value?.trim()) {
+    body.value = null
+    parsedData.value = null
+    return
+  }
+
+  try {
+    if (!parser) {
+      const { createCachedParser } = await import('@nuxtjs/mdc/runtime')
+      parser = createCachedParser({
+        ...props.parserOptions,
+        toc: false,
+        contentHeading: false
+      })
+    }
+
+    const result = await parser(value)
+    if (result?.body) {
+      body.value = result.body
+      parsedData.value = result.data
+    }
+  } catch {
+    // Parsing failed — plain text fallback remains visible
+  }
+}
+
+parseValue(props.value)
+watch(() => props.value, val => parseValue(val))
 </script>
 
 <template>
@@ -36,7 +50,7 @@ const body = computed(() => parsed.value?.body)
     v-if="body?.children?.length"
     :class="props.class"
     :body="body"
-    :data="parsed?.data"
+    :data="parsedData"
     :components="props.components ?? {}"
   />
   <p v-else-if="value.trim()" class="whitespace-pre-wrap">
