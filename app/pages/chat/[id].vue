@@ -150,7 +150,7 @@ onMounted(() => {
                   :is-streaming="part.state !== 'done'"
                 />
                 <!-- Only render markdown for assistant messages to prevent XSS from user input -->
-                <MDCCached
+                <AssistantMarkdown
                   v-else-if="part.type === 'text' && message.role === 'assistant'"
                   :value="part.text"
                   :cache-key="`${message.id}-${index}`"
