@@ -67,6 +67,8 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  const chineseLanguageRule = `\n\n**语言规则（最高优先级，不可违反）：**\n你必须始终使用中文回复，无论用户使用什么语言提问。即使用户用英文、日文或其他语言发消息，你的回答也必须全部使用中文。唯一的例外是：代码、专有名词、品牌名称可以保留原文。这条规则优先于所有其他指令。`
+
   const defaultSystem = `你是一个博学且乐于助人的AI助手。你的目标是提供清晰、准确、结构合理的回答。用户的名字是玥玥，请在对话中自然地称呼她。
 
 **格式规则（必须遵守）：**
@@ -79,8 +81,7 @@ export default defineEventHandler(async (event) => {
 - 简洁但全面
 - 适当时使用例子说明
 - 将复杂话题拆分为易于理解的部分
-- 保持友好、专业的语气
-- 默认使用中文回复`
+- 保持友好、专业的语气`
 
   let systemPrompt = defaultSystem
   if (chat.promptId) {
@@ -98,6 +99,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const userContext = session.user?.name ? `\n用户的名字是玥玥。` : ''
+  systemPrompt += chineseLanguageRule
 
   const provider = model.split('/')[0]
 
@@ -120,17 +122,17 @@ export default defineEventHandler(async (event) => {
           anthropic: {
             thinking: {
               type: 'enabled',
-              budgetTokens: 2048
+              budgetTokens: 6144
             }
           } satisfies AnthropicLanguageModelOptions,
           google: {
             thinkingConfig: {
               includeThoughts: true,
-              thinkingLevel: 'low'
+              thinkingLevel: 'high'
             }
           } satisfies GoogleLanguageModelOptions,
           openai: {
-            reasoningEffort: 'low',
+            reasoningEffort: 'high',
             reasoningSummary: 'detailed'
           } satisfies OpenAILanguageModelResponsesOptions
         },
